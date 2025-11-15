@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIND & FIX - Transform Your Fitness with Desko Amat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-light: #fafafa;
+            --accent-green: #7c9885;
+            --accent-amber: #f59e0b;
+            --text-gray: #6b7280;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(124, 152, 133, 0.1) 0%, rgba(250, 250, 250, 0.9) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-green);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #6a8472;
+            transform: translateY(-2px);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background-color: rgba(250, 250, 250, 0.9);
+        }
+        
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .animate-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">F&F</span>
+                    </div>
+                    <div>
+                        <h1 class="font-display font-bold text-xl">FIND & FIX</h1>
+                        <p class="text-xs text-gray-500">Desko Amat</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-green-600 transition-colors">Home</a>
+                    <a href="#plans" class="text-gray-700 hover:text-green-600 transition-colors">Plans</a>
+                    <a href="#about" class="text-gray-700 hover:text-green-600 transition-colors">About</a>
+                    <a href="#contact" class="text-gray-700 hover:text-green-600 transition-colors">Contact</a>
+                    <button id="nav-signin" class="btn-primary text-white px-6 py-2 rounded-lg font-medium">Sign In</button>
+                </div>
+                
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-20 pb-16 hero-bg">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h1 class="font-display text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Transform Your 
+                        <span class="text-gradient">Fitness Journey</span>
+                    </h1>
+                    <div class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        <span id="typed-text"></span>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Personalized meal plans that fit your lifestyle</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Workout programs designed for your goals</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Direct coaching and accountability</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button id="hero-cta" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg">
+                            Start Your Transformation
+                        </button>
+                        <button id="hero-secondary" class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:border-green-600 hover:text-green-600 transition-colors">
+                            View Success Stories
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="animate-fade-in">
+                    <div class="relative">
+                        <img src="resources/hero-fitness.png" alt="Fitness Transformation" class="w-full h-auto rounded-2xl shadow-2xl">
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
+                            <div class="text-3xl font-bold text-green-600">500+</div>
+                            <div class="text-sm text-gray-600">Lives Transformed</div>
+                        </div>
+                        <div class="absolute -top-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
+                            <div class="text-3xl font-bold text-amber-500">95%</div>
+                            <div class="text-sm text-gray-600">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="font-display text-4xl font-bold mb-4">Choose Your Transformation Plan</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Every plan includes personalized coaching, meal plans, and workout programs designed specifically for your goals and lifestyle.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Starter Plan -->
+                <div class="plan-card card-hover bg-white border-2 border-gray-200 rounded-2xl p-8 animate-fade-in">
+                    <div class="text-center mb-8">
+                        <h3 class="font-display text-2xl font-bold mb-2">Starter</h3>
+                        <p class="text-gray-600 mb-4">4-week micro-plan</p>
+                        <div class="text-4xl font-bold text-green-600 mb-2">$9</div>
+                        <div class="text-gray-500">USD</div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">Weekly meal plan (PDF)</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">3x weekly workout routines</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">Private chat queue</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="plan-select w-full btn-primary text-white py-3 rounded-lg font-semibold" data-plan="starter">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Transform Plan -->
+                <div class="plan-card card-hover bg-white border-2 border-green-600 rounded-2xl p-8 animate-fade-in relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <h3 class="font-display text-2xl font-bold mb-2">Transform</h3>
+                        <p class="text-gray-600 mb-4">12-week guided plan</p>
+                        <div class="text-4xl font-bold text-green-600 mb-2">$29</div>
+                        <div class="text-gray-500">USD</div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">Custom meal swaps</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">5 workouts/week</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">Monthly 1:1 check-in</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="plan-select w-full btn-primary text-white py-3 rounded-lg font-semibold" data-plan="transform">
+                        Transform Now
+                    </button>
+                </div>
+                
+                <!-- Coaching Plan -->
+                <div class="plan-card card-hover bg-white border-2 border-gray-200 rounded-2xl p-8 animate-fade-in">
+                    <div class="text-center mb-8">
+                        <h3 class="font-display text-2xl font-bold mb-2">Coaching</h3>
+                        <p class="text-gray-600 mb-4">Ongoing coaching</p>
+                        <div class="text-4xl font-bold text-green-600 mb-2">$99</div>
+                        <div class="text-gray-500">USD</div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">Weekly check-ins</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">Custom meal+training</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">Priority booking</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="plan-select w-full btn-primary text-white py-3 rounded-lg font-semibold" data-plan="coaching">
+                        Get Coaching
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <img src="resources/coach-desko.png" alt="Desko Amat" class="w-full h-auto rounded-2xl shadow-lg">
+                </div>
+                
+                <div class="animate-fade-in">
+                    <h2 class="font-display text-4xl font-bold mb-6">Hi, I'm Desko Amat</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        I've spent over a decade helping people transform their lives through sustainable fitness and nutrition. My approach is simple: no gimmicks, no extreme measures, just proven methods that work with your lifestyle.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Whether you're looking to lose weight, build muscle, or simply feel better in your own skin, I'm here to guide you every step of the way. Your transformation starts with a single decision.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600 mb-2">10+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600 mb-2">500+</div>
+                            <div class="text-gray-600">Clients Transformed</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary text-white px-8 py-4 rounded-lg font-semibold" id="about-cta">
+                        Start Working Together
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="font-display text-4xl font-bold mb-4">Real Transformations</h2>
+                <p class="text-xl text-gray-600">See what my students have achieved</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-8 animate-fade-in">
+                    <div class="flex items-center mb-6">
+                        <img src="resources/nutrition-plan.png" alt="Success Story" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">Sarah M.</h4>
+                            <p class="text-gray-600 text-sm">Lost 25 lbs in 3 months</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "Desko's approach made fitness sustainable for the first time in my life. The meal plans were realistic and the workouts actually fit my schedule."
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 animate-fade-in">
+                    <div class="flex items-center mb-6">
+                        <img src="resources/progress-dashboard.png" alt="Success Story" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">Mike R.</h4>
+                            <p class="text-gray-600 text-sm">Gained 15 lbs muscle</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "The personalized coaching made all the difference. Desko adjusted my program based on my progress and I saw results faster than ever."
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 animate-fade-in">
+                    <div class="flex items-center mb-6">
+                        <img src="resources/hero-fitness.png" alt="Success Story" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">Lisa K.</h4>
+                            <p class="text-gray-600 text-sm">Improved energy & confidence</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "Not just about the weight loss - I feel stronger, more confident, and have energy I haven't had in years."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="animate-fade-in">
+                <h2 class="font-display text-4xl font-bold mb-4">Ready to Start?</h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Your transformation journey begins with a single step. Let's make it happen together.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <button class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg" id="final-cta">
+                        Choose Your Plan
+                    </button>
+                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:border-green-600 hover:text-green-600 transition-colors" id="contact-btn">
+                        Get In Touch
+                    </button>
+                </div>
+                
+                <div class="text-gray-600">
+                    <p class="mb-2">Questions? Email me directly at</p>
+                    <a href="mailto:desko@findandfix.com" class="text-green-600 font-semibold hover:text-green-700 transition-colors">
+                        desko@findandfix.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <div class="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">F&F</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-lg">FIND & FIX</h3>
+                        <p class="text-xs text-gray-500">Transform Your Fitness</p>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right text-gray-600">
+                    <p>&copy; 2024 Desko Amat. All rights reserved.</p>
+                    <p class="text-sm mt-1">Built for transformation, designed for success.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Plan Comparison Modal -->
+    <div id="plan-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="font-display text-3xl font-bold">Choose Your Plan</h2>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Modal content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
